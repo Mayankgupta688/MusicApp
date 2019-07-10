@@ -41,6 +41,10 @@ export class ApiCallService {
     });
   }
 
+  logoutUser() {
+    this.userAuthenticated.emit("Logout Successful")
+  }
+
   deleteSongFromPlaylist(removeName) {
     var index = this.playListArray.findIndex(song => song.name === removeName);
     this.playListArray.splice(index, 1);

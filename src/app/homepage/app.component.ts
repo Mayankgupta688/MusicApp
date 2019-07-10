@@ -14,11 +14,19 @@ export class AppComponent {
 
   constructor(public _apiCallService: ApiCallService) { 
     this._apiCallService.userAuthenticated.subscribe((data) => {
-      this.authenticationDetails = this._apiCallService.userAuthenticationData;
-      if(this.authenticationDetails['access_token']) {
-        this.isAuthenticated = true;
+      if(data == "Logout Successful") {
+        this.isAuthenticated = false;
+      } else if(data == "Authentication Done") {
+        this.authenticationDetails = this._apiCallService.userAuthenticationData;
+        if(this.authenticationDetails['access_token']) {
+          this.isAuthenticated = true;
+        }
       }
     });
+  }
+
+  logoutUser() {
+    this._apiCallService.logoutUser();
   }
 
   updateFilterValue() {

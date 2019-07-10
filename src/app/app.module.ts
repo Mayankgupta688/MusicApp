@@ -32,7 +32,7 @@ const routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  // providers: [ApiCallService],
+  providers: [ApiCallService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
