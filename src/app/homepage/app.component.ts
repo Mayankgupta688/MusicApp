@@ -9,6 +9,7 @@ import { ApiCallService } from '../service/apiCall.service';
 export class AppComponent {
   title = 'music-playlist';
   searchText = "";
+  isAuthenticated = true;
 
   constructor(public _apiCallService: ApiCallService) { 
     

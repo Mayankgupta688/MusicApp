@@ -4,39 +4,44 @@
     padding: 0.5rem;
   }
 </style>
-
-<div class="bs-example">
-  <nav class="navbar navbar-expand-md navbar-light bg-light">
-    <a [routerLink]="['/']" class="navbar-brand">Home</a>
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">      
-      <form class="form-inline">
-        <div class="input-group">                    
-          <input type="text" placeholder="Search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" (keyup)="updateFilterValue()"/>
-          <div class="input-group-append">
-            <button type="button" class="btn btn-secondary" (click)="updateFilterValue()"><i class="fa fa-search"></i></button>
+<div *ngIf="isAuthenticated == true">
+  <div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <a [routerLink]="['/']" class="navbar-brand">Home</a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">      
+        <form class="form-inline">
+          <div class="input-group">                    
+            <input type="text" style="padding-left: 5px;" placeholder="Search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" (keyup)="updateFilterValue()"/>
+            <div class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="updateFilterValue()"><em class="fa fa-search"></em></button>
+            </div>
           </div>
+        </form>
+        <div class="navbar-nav">
+          <a href="#" class="nav-item nav-link">Login</a>
         </div>
-      </form>
-      <div class="navbar-nav">
-        <a href="#" class="nav-item nav-link">Login</a>
       </div>
-    </div>
-  </nav>
-</div>
-<div class="container-fluid">
-  <div class="row" *ngIf="searchText.length > 0" style="padding: 15px;">
-    Filtered by: {{searchText}}
+    </nav>
   </div>
-  <div class="row">
-    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
-      <router-outlet></router-outlet>
+  <div class="container-fluid">
+    <div class="row" *ngIf="searchText.length > 0" style="padding: 15px;">
+      Filtered by: {{searchText}}
     </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-      <app-playlist></app-playlist>
-    </div>
-  </div>    
+    <div class="row">
+      <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+        <router-outlet></router-outlet>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+        <app-playlist></app-playlist>
+      </div>
+    </div>    
+  </div>
+</div>
+
+<div *ngIf="isAuthenticated == false">
+  <login-page></login-page>
 </div>
 

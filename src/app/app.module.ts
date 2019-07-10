@@ -7,10 +7,13 @@ import { AppComponent } from './homepage/app.component';
 import { AlbumListComponent } from './albumList/albumList.component';
 import { SongListComponent } from './songList/songList.component';
 import { UserPlayListComponent } from './userPlayList/userPlayList.component';
+import { LoginComponent } from './loginPage/loginPage.component';
+
 import { ApiCallService } from "./service/apiCall.service";
 import { FormsModule } from "@angular/forms";
 const routes = [
   { path: '', component: AlbumListComponent },
+  { path: 'login', component: AlbumListComponent },
   { path:'songList/:id', component: SongListComponent }
 ]
 
@@ -19,7 +22,8 @@ const routes = [
     AppComponent,
     AlbumListComponent,
     UserPlayListComponent,
-    SongListComponent
+    SongListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

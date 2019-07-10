@@ -31,4 +31,10 @@ export class ApiCallService {
       });
     }
   }
+
+  deleteSongFromPlaylist(removeName) {
+    var index = this.playListArray.findIndex(song => song.name === removeName);
+    this.playListArray.splice(index, 1);
+    this.playlistDataRecieved.emit("Playlist Updated");
+  }
 }

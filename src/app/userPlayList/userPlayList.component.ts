@@ -17,9 +17,8 @@ export class UserPlayListComponent implements OnInit {
     })
   }     
 
-    removeFromPlayList(removeName) {
-      var index = this.playList.findIndex(x => x.name === removeName);
-      this.playList.splice(index, 1);
-      
-    }
+  removeFromPlayList(removeName) {
+    debugger;
+    this._apiCallService.deleteSongFromPlaylist(removeName)
+  }
 }

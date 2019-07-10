@@ -1,0 +1,11 @@
+<div style="display: flex; flex-direction: column; width: 400px; margin: auto; margin-top: 150px;">
+    <div class="form-group">
+        <label for="usr">Enter User Name:</label>
+        <input type="text" [(ngModel)]="userName" class="form-control" id="usr">
+    </div>
+    <div class="form-group">
+        <label for="pwd">Enter Password:</label>
+        <input type="password" [(ngModel)]="userPassword" class="form-control" id="pwd">
+    </div>
+    <button type="button" class="btn" (click)="authenticateUser()">Login</button>
+</div>
