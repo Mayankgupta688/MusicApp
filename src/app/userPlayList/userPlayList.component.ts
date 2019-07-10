@@ -12,12 +12,9 @@ export class UserPlayListComponent implements OnInit {
   constructor(public _apiCallService: ApiCallService) { }
 
   ngOnInit() {
-    this.playList = this._apiCallService.playListArray;
-
-    // this._apiCallService.onFilterUpdate.subscribe((data) => {
-      
-    //   alert(data)
-    // })
+    this._apiCallService.playlistDataRecieved.subscribe((data) => {
+      this.playList = this._apiCallService.playListArray;
+    })
   }     
 
     removeFromPlayList(removeName) {

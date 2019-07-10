@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,58 +7,28 @@ import { Observable, of } from 'rxjs';
 export class ApiCallService {
 
   onFilterUpdate = new EventEmitter<string>();
+  albumDataRecieved = new EventEmitter<string>();
+  playlistDataRecieved = new EventEmitter<string>();
 
-  constructor() { }
+  albumListDetails: any = [];
+  playListArray: any = [];
 
-  playListArray: any = [{
-    "name": "Kabir Khan",
-    "duration": "1.33 mins",
-    "artist": "Various Artists",
-    "avatar": "https://application-data-store.s3.ap-south-1.amazonaws.com/MusicAppImages/Aila-Re-From-Malaal--Hindi-2019-20190528231527-150x150.jpg",
-  }, {
-    "name": "Super 30",
-    "duration": "1.33 mins",
-    "artist": "Various Artists",
-    "avatar": "https://application-data-store.s3.ap-south-1.amazonaws.com/MusicAppImages/Article-15-Hindi-2019-20190614164612-150x150.jpg"
-  }, {
-    "name": "Bharat",
-    "duration": "1.33 mins",
-    "artist": "Various Artists",
-    "avatar": "https://application-data-store.s3.ap-south-1.amazonaws.com/MusicAppImages/Bharat-Hindi-2019-20190517100839-150x150.jpg"
-  }, {
-    "name": "Naina",
-    "duration": "1.33 mins",
-    "artist": "Gourov-Roshin",
-    "avatar": "https://application-data-store.s3.ap-south-1.amazonaws.com/MusicAppImages/Dheeme-Dheeme-Hindi-2019-20190521143140-150x150.jpg"
-  }, {
-    "name": "Udhal Ho (From)",
-    "duration": "1.33 mins",
-    "artist": "Dummy Artist",
-    "avatar": "https://application-data-store.s3.ap-south-1.amazonaws.com/MusicAppImages/Dil-Aziz-Hindi-2019-20190426075752-150x150.jpg"
-  }, {
-    "name": "Kabir Khan",
-    "duration": "1.33 mins",
-    "artist": "Various Artists",
-    "avatar": "https://application-data-store.s3.ap-south-1.amazonaws.com/MusicAppImages/Aila-Re-From-Malaal--Hindi-2019-20190528231527-150x150.jpg"
-  }, {
-    "name": "Kabir Khan",
-    "duration": "1.33 mins",
-    "artist": "Various Artists",
-    "avatar": "https://application-data-store.s3.ap-south-1.amazonaws.com/MusicAppImages/Aila-Re-From-Malaal--Hindi-2019-20190528231527-150x150.jpg"
-  }, {
-    "name": "Kabir Khan",
-    "duration": "1.33 mins",
-    "artist": "Various Artists",
-    "avatar": "https://application-data-store.s3.ap-south-1.amazonaws.com/MusicAppImages/Aila-Re-From-Malaal--Hindi-2019-20190528231527-150x150.jpg"
-  }, {
-    "name": "Kabir Khan",
-    "duration": "1.33 mins",
-    "artist": "Various Artists",
-    "avatar": "https://application-data-store.s3.ap-south-1.amazonaws.com/MusicAppImages/Aila-Re-From-Malaal--Hindi-2019-20190528231527-150x150.jpg"
-  }, {
-    "name": "Kabir Khan",
-    "duration": "1.33 mins",
-    "artist": "Various Artists",
-    "avatar": "https://application-data-store.s3.ap-south-1.amazonaws.com/MusicAppImages/Aila-Re-From-Malaal--Hindi-2019-20190528231527-150x150.jpg"
-  }];
+  constructor(private http: HttpClient) { }
+
+  getAlbumData() {
+
+    if(this.albumListDetails.length > 0) {
+      this.albumDataRecieved.emit("Data Recieved");
+    } else {
+      this.http.get("https://pvrfeqd9n1.execute-api.ap-south-1.amazonaws.com/dev/album").subscribe((data) => {
+        this.albumListDetails = data;
+        this.albumDataRecieved.emit("Data Recieved");
+      });
+
+      this.http.get("https://n7rwmo0yg3.execute-api.ap-south-1.amazonaws.com/dev/playlist").subscribe((data) => {
+        this.playListArray = data;
+        this.playlistDataRecieved.emit("data Recieved");
+      });
+    }
+  }
 }
