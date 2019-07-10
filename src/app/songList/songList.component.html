@@ -1,0 +1,21 @@
+<div>
+    <h3 class="px-10" style="margin-top: 5px;">Available Songs</h3>
+    <table style="position: relative; top: 2px; border-right: 2px solid rgb(248, 248, 248);" class="table black table-wrapper-scroll-y my-custom-scrollbar">
+        <!--Table body-->
+        <tbody>
+            <tr *ngFor='let body of filteredSongList'>
+                <th> <img height="60px;" src='{{body.avatar}}'></th>
+                <td>
+                    <tr>{{body.name}}</tr>
+                    <tr style="font-size: 10px !important;">{{body.duration}}</tr>
+                </td>
+                <td>{{body.artist}}</td>
+                <td>
+                    <div title="Add to playList" style="height: 50px;margin-bottom: 10px;">
+                        <button (click)="addToPlayListFunc(body.name);" style="float: right;border: 0; background-color: white;"><i class="fa fa-plus"></i></button>
+                    </div>
+                </td>
+            </tr>      
+        </tbody>
+    </table>
+</div>

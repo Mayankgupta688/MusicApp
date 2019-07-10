@@ -1,0 +1,29 @@
+<style>
+.my-custom-scrollbar {
+position: relative;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+</style>
+<h5 style="margin-top: 20px;">User PlayList</h5>
+<!--Table-->
+<table style="position: relative; top: 2px;" class="table black table-wrapper-scroll-y my-custom-scrollbar">
+    <!--Table body-->
+    <tbody>
+        <tr *ngFor='let body of playList'>
+            <th> <img height="60px;" title="{{body.duration}}" src='{{body.avatar}}' ></th>
+            <td>
+                <tr style="font-size: 11px !important;">{{body.name}}</tr>
+                <tr style="font-size: 9px !important;">{{body.duration}}</tr>
+            </td>
+            <td style="font-size: 11px !important;">{{body.artist}}</td>
+            <td>
+                <div title="Remove from playList" style="height: 50px;margin-bottom: 10px;">
+                    <button (click)="removeFromPlayList(body.name);" style="float: right;border: 0; background-color: white;"><i class="fa fa-remove"></i></button>
+                </div>
+            </td>
+        </tr>      
+    </tbody>
+</table>
