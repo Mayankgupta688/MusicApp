@@ -26,12 +26,14 @@ export class ApiCallService {
         this.albumListDetails = data;
         this.albumDataRecieved.emit("Data Recieved");
       });
-
-      this.http.get("https://n7rwmo0yg3.execute-api.ap-south-1.amazonaws.com/dev/playlist").subscribe((data) => {
-        this.playListArray = data;
-        this.playlistDataRecieved.emit("data Recieved");
-      });
     }
+  }
+
+  getUserPlayList() {
+    this.http.get("https://n7rwmo0yg3.execute-api.ap-south-1.amazonaws.com/dev/playlist").subscribe((data) => {
+      this.playListArray = data;
+      this.playlistDataRecieved.emit("data Recieved");
+    });
   }
 
   authenticateUser() {

@@ -13,14 +13,23 @@ export class AppComponent {
   authenticationDetails = {};
 
   constructor(public _apiCallService: ApiCallService) { 
+
+    if(window.sessionStorage.getItem("authenticated") == "1") {
+      this.isAuthenticated = true;
+    }
+
     this._apiCallService.userAuthenticated.subscribe((data) => {
       if(data == "Logout Successful") {
         this.isAuthenticated = false;
+        window.sessionStorage.setItem("authenticated", "0");
       } else if(data == "Authentication Done") {
         this.authenticationDetails = this._apiCallService.userAuthenticationData;
         if(this.authenticationDetails['access_token']) {
           this.isAuthenticated = true;
         }
+
+        window.sessionStorage.setItem("authenticated", "1");
+
       }
     });
   }

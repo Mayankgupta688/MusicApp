@@ -24,7 +24,6 @@ export class LoginComponent {
     }
 
     authenticateUser() {
-        debugger;
         this._apiCallService.authenticateUser();
     }
 }

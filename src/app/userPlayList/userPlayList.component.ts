@@ -14,7 +14,9 @@ export class UserPlayListComponent implements OnInit {
   ngOnInit() {
     this._apiCallService.playlistDataRecieved.subscribe((data) => {
       this.playList = this._apiCallService.playListArray;
-    })
+    });
+
+    this._apiCallService.getUserPlayList();
   }     
 
   removeFromPlayList(removeName) {
