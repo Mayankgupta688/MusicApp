@@ -16,13 +16,10 @@ export class SongListComponent implements OnInit {
     songListArray: any = [];
 
     constructor(public _apiCallService: ApiCallService, private route: ActivatedRoute) {
-      debugger;
       this.selectedAlbumId = this.route.snapshot.paramMap.get("id");
     }
 
     ngOnInit() {
-
-      debugger;
 
       this.addToPlayListArray = this._apiCallService.playListArray;
 

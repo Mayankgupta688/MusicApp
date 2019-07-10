@@ -9,9 +9,11 @@ export class ApiCallService {
   onFilterUpdate = new EventEmitter<string>();
   albumDataRecieved = new EventEmitter<string>();
   playlistDataRecieved = new EventEmitter<string>();
+  userAuthenticated = new EventEmitter<string>();
 
   albumListDetails: any = [];
   playListArray: any = [];
+  userAuthenticationData = {};
 
   constructor(private http: HttpClient) { }
 
@@ -32,9 +34,20 @@ export class ApiCallService {
     }
   }
 
+  authenticateUser() {
+    this.http.post("http://5a530e1477e1d20012fa066a.mockapi.io/login", {}).subscribe((data) => {
+      this.userAuthenticationData = data;
+      this.userAuthenticated.emit("Authentication Done")
+    });
+  }
+
   deleteSongFromPlaylist(removeName) {
     var index = this.playListArray.findIndex(song => song.name === removeName);
     this.playListArray.splice(index, 1);
     this.playlistDataRecieved.emit("Playlist Updated");
+  }
+
+  addSongToPlaylist(albumName, songName) {
+
   }
 }

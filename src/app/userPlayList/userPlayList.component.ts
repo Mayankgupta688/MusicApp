@@ -18,7 +18,6 @@ export class UserPlayListComponent implements OnInit {
   }     
 
   removeFromPlayList(removeName) {
-    debugger;
     this._apiCallService.deleteSongFromPlaylist(removeName)
   }
 }

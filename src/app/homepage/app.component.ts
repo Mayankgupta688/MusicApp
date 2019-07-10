@@ -9,10 +9,16 @@ import { ApiCallService } from '../service/apiCall.service';
 export class AppComponent {
   title = 'music-playlist';
   searchText = "";
-  isAuthenticated = true;
+  isAuthenticated = false;
+  authenticationDetails = {};
 
   constructor(public _apiCallService: ApiCallService) { 
-    
+    this._apiCallService.userAuthenticated.subscribe((data) => {
+      this.authenticationDetails = this._apiCallService.userAuthenticationData;
+      if(this.authenticationDetails['access_token']) {
+        this.isAuthenticated = true;
+      }
+    });
   }
 
   updateFilterValue() {
